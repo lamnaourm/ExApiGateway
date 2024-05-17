@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  service1:
+    build: ./service1
+    ports:
+      - 3000:3000
+    depends_on:
+      - gateway
+  service2:
+    build: ./service2
+    ports:
+      - 3001:3000
+    depends_on:
+      - gateway
+  service3:
+    build: ./service3
+    ports:
+      - 3002:3000
+    depends_on:
+      - gateway
+  gateway:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./api_gateway/default.conf:/etc/nginx/conf.d/default.conf
